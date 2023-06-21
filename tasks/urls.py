@@ -11,6 +11,7 @@ from .views import (
     PositionListView,
     PositionDetailView,
     PositionUpdateView,
+    PositionDeleteView,
 )
 
 
@@ -27,6 +28,7 @@ urlpatterns = [
     path("positions/", PositionListView.as_view(), name="positions-list"),
     path("positions/<int:pk>/detail", PositionDetailView.as_view(), name="positions-detail"),
     path("positions/<int:pk>/update", PositionUpdateView.as_view(), name="positions-update"),
+    path("positions/<int:pk>/delete", PositionDeleteView.as_view(), name="positions-delete"),
 ]
 
 app_name = "tasks"
