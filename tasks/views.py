@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -47,3 +47,18 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Worker
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:worker-list")
+
+
+class WorkerDeleteView(
+    LoginRequiredMixin,
+    PermissionRequiredMixin,
+    generic.DeleteView
+):
+    model = Worker
+    success_url = reverse_lazy("tasks:worker-list")
