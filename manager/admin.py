@@ -11,8 +11,16 @@ class WorkerAdmin(UserAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_filter = ("task_type",)
+    list_filter = ("task_type", "priority")
     search_fields = ("name",)
+    list_display = (
+        "name",
+        "description",
+        "deadline_date",
+        "is_completed",
+        "priority",
+        "task_type",
+    )
 
 
 admin.site.register(TaskType)
