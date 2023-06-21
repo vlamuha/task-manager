@@ -108,7 +108,7 @@ AUTH_USER_MODEL = "manager.Worker"
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Kiev"
 
 USE_I18N = True
 
