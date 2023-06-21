@@ -26,5 +26,5 @@ class Task(models.Model):
         ("urgent", "Urgent Priority")
     ]
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=10)
-    task_type = models.ForeignKey(TaskType, on_delete=CASCADE)
+    task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker, related_name="tasks")
