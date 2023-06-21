@@ -43,3 +43,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "tasks/worker_list.html"
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
