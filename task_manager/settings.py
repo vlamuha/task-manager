@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "manager",
+    "tasks",
 ]
 
 MIDDLEWARE = [
@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "manager.Worker"
+AUTH_USER_MODEL = "tasks.Worker"
 
 
 # Internationalization
