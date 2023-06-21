@@ -1,4 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.views import generic
 
 from manager.models import Worker, Task
 
@@ -13,3 +15,8 @@ def index(request):
     }
 
     return render(request, "manager/index.html", context=context)
+
+
+class TaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    template_name = "manager/task_list.html"
