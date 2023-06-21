@@ -14,7 +14,7 @@ def index(request):
     context = {
         "num_workers": num_workers,
         "num_tasks": num_tasks,
-        "num_positions": num_positions
+        "num_positions": num_positions,
     }
 
     return render(request, "tasks/index.html", context=context)

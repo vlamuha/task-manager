@@ -23,7 +23,7 @@ class Task(models.Model):
         ("low", "Low Priority"),
         ("medium", "Medium Priority"),
         ("high", "High Priority"),
-        ("urgent", "Urgent Priority")
+        ("urgent", "Urgent Priority"),
     ]
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=10)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)

@@ -16,7 +16,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "description",
-        "deadline_date",
+        "deadline",
         "is_completed",
         "priority",
         "task_type",
