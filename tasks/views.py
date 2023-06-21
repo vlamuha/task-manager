@@ -64,6 +64,10 @@ class WorkerDeleteView(
     success_url = reverse_lazy("tasks:worker-list")
 
 
-class PositionListView(generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     template_name = "tasks/positions.html"
+
+
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position

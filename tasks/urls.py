@@ -9,6 +9,7 @@ from .views import (
     WorkerDetailView,
     WorkerUpdateView,
     PositionListView,
+    PositionDetailView
 )
 
 
@@ -23,6 +24,7 @@ urlpatterns = [
     path("worker/<int:pk>/detail/", WorkerDetailView.as_view(), name="worker-detail"),
     path("worker/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
     path("positions/", PositionListView.as_view(), name="positions-list"),
+    path("positions/<int:pk>/detail", PositionDetailView.as_view(), name="positions-detail"),
 ]
 
 app_name = "tasks"
