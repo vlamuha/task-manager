@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from tasks.models import Worker, Task, Position
+from tasks.models import Worker, Task, Position, TaskType
 
 
 def index(request):
@@ -86,3 +86,7 @@ class PositionDeleteView(
 ):
     model = Position
     success_url = reverse_lazy("tasks:positions-list")
+
+
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
