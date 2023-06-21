@@ -95,3 +95,9 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
+
+
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:task-types")
