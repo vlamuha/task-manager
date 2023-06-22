@@ -2,25 +2,50 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-<div style="background-image: url(/static/img/2.png);">
-  <div class="container-tasktype">
-  <h1 style="text-align: center">
-    Task types
-  </h1>
-    {% if tasktype_list %}
-      <table class="table table-striped">
-        <tr>
-          <th>ID</th>
-          <th>Type</th>
-        </tr>
-      {% for tasktype in tasktype_list %}
-        <tr>
-          <td>{{ tasktype.id }}</td>
-          <td>{{ tasktype.name }}</td>
-        </tr>
-      {% endfor %}
-    {% endif %}
- </div>
-</div>
+   <div>
+     <h1 style="text-align: center;">
+      Task List
+    </h1>
+    <form action="" method="GET" class="form-inline" style="margin: 20px">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
+    </form>
 
+    <div style="margin-left: 20px; margin-right: 20px">
+      {% if task_list %}
+    <div>
+      <table class="table table-striped" style="padding: 20px; border: solid; border-color: #f4623a">
+      <tr>
+        <th style="width: 200px">Name</th>
+        <th style="width: 450px">Description</th>
+        <th>Dead line date</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assignees</th>
+      </tr>
+    {% for task in task_list %}
+      <tr>
+        <td><a href="{% url "tasks:task-detail" pk=task.id %} ">{{ task.name }}</a></td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.deadline_date }}</td>
+        <td>{{ task.is_completed }}</td>
+        <td>{{ task.priority }}</td>
+        <td>
+          {% for worker in task.assignees.all %}
+            {{ worker.username }}
+          {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no tasks in the service.</p>
+    {% endif %}
+    </div>
+    </div>
+    <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page" style="float: right; margin-right: 30px">
+        Create
+    </a>
+   </div>
 {% endblock %}
