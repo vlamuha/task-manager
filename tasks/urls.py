@@ -20,6 +20,7 @@ from .views import (
     TaskTypeCreateView,
     TaskTypeUpdateView,
     TaskTypeDeleteView,
+    TaskTypeCreateView,
 )
 
 
