@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -151,3 +153,14 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("tasks:task_type_list")
+
+    @login_required
+    def toggle_assign_to_task(request, pk):
+        worker = Worker.objects.get(id=request.user.id)
+        if (
+            Worker.objects.get(id=pk) in worker.tasks.all()
+        ):  # probably could check if car exists
+            worker.tasks.remove(pk)
+        else:
+            worker.tasks.add(pk)
+        return HttpResponseRedirect(reverse_lazy("task:task-detail", args=[pk]))
