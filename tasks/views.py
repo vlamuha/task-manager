@@ -208,9 +208,7 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
-    if (
-        Task.objects.get(id=pk) in worker.tasks.all()
-    ):
+    if Task.objects.get(id=pk) in worker.tasks.all():
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
