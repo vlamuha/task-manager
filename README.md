@@ -18,7 +18,7 @@ Prerequisites: Prior installation of Python 3 is essential.
 
 Usage:
 
-Clone the project repository: git clone
+Clone the project repository: git clone https://github.com/vlamuha/task-manager
 Set up a Python virtual environment: python3 -m venv venv
 Activate the virtual environment:
 Windows: venv\Scripts\activate
