@@ -8,27 +8,25 @@ from tasks.models import Task, Worker
 class TaskCreationForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=Worker.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-floating'}),
-        label='Assignees',
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-floating"}),
+        label="Assignees",
     )
 
     class Meta:
         model = Task
         fields = [
-            'name',
-            'description',
-            'deadline_date',
-            'priority',
-            'task_type',
-            'assignees'
+            "name",
+            "description",
+            "deadline",
+            "priority",
+            "task_type",
+            "assignees",
         ]
-        widgets = {
-            'deadline_date': forms.TextInput(attrs={'type': 'datetime-local'})
-        }
+        widgets = {"deadline": forms.TextInput(attrs={"type": "datetime-local"})}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['assignees'].label_from_instance = lambda obj: obj.username
+        self.fields["assignees"].label_from_instance = lambda obj: obj.username
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -46,9 +44,7 @@ class PositionSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "Search by position"}
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by position"}),
     )
 
 
@@ -57,9 +53,7 @@ class WorkerSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "Search by last name"}
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by last name"}),
     )
 
 
@@ -68,7 +62,5 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "Search by task name"}
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by task name"}),
     )
