@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -210,7 +210,7 @@ def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
     if (
         Task.objects.get(id=pk) in worker.tasks.all()
-    ):  # probably could check if car exists
+    ):
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
