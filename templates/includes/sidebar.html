@@ -1,7 +1,22 @@
-<ul class="sidebar-nav">
-  <li><a href="{% url "tasks:index" %}">Home</a></li>
-  <li><a href="{% url "tasks:task-list" %}">All tasks</a></li>
-  <li><a href="{% url "tasks:positions-list" %}">All Positions</a></li>
-  <li><a href="{% url "tasks:worker-list" %}">All workers</a></li>
-  <li><a href="{% url "tasks:task-types" %}">Task types</a></li>
-</ul>
+<nav class="navbar" id="mainNav">
+  <div class="container">
+      <ul class="container navbar-nav flex-row justify-content-center">
+        <li class="nav-item mx-3">
+          <a class="nav-link active" style="" aria-current="page" href="{% url "tasks:index" %}"><strong>Home</strong></a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" aria-current="page" href="{% url "tasks:task-list" %}">Tasks</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" aria-current="page" href="{% url "tasks:worker-list" %}">Workers</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" aria-current="page" href="{% url "tasks:positions-list" %}">Positions</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" aria-current="page" href="{% url "tasks:task-types" %}">Task types</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
