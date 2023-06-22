@@ -5,12 +5,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from tasks.forms import (TaskForm,
-                         WorkerCreationForm,
-                         PositionSearchForm,
-                         WorkerSearchForm,
-                         TaskCreationForm
-                         )
+from tasks.forms import (
+    TaskForm,
+    WorkerCreationForm,
+    PositionSearchForm,
+    WorkerSearchForm,
+    TaskCreationForm,
+)
 from tasks.models import Worker, Task, Position, TaskType
 
 
@@ -63,9 +64,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
         last_name = self.request.GET.get("last_name", "")
 
-        context["search_form"] = WorkerSearchForm(
-            initial={"last_name": last_name}
-        )
+        context["search_form"] = WorkerSearchForm(initial={"last_name": last_name})
         return context
 
     def get_queryset(self):
@@ -95,11 +94,7 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("tasks:worker-list")
 
 
-class WorkerDeleteView(
-    LoginRequiredMixin,
-    PermissionRequiredMixin,
-    generic.DeleteView
-):
+class WorkerDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("tasks:worker-list")
 
@@ -113,9 +108,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = PositionSearchForm(
-            initial={"name": name}
-        )
+        context["search_form"] = PositionSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
@@ -146,9 +139,7 @@ class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 class PositionDeleteView(
-    LoginRequiredMixin,
-    PermissionRequiredMixin,
-    generic.DeleteView
+    LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView
 ):
     model = Position
     success_url = reverse_lazy("tasks:positions_list")

@@ -26,6 +26,7 @@ class WorkerAdmin(UserAdmin):
         )
     )
 
+
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_filter = ("task_type", "priority")
