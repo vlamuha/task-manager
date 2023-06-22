@@ -1,50 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>
-    {{ task.name }}
-    <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page" style="float: right; margin: 10px">
-      Delete
-    </a>
-
-    <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page" style="float: right; margin: 10px">
-      Update
-    </a>
-  </h2>
-   <p>
-    <strong>Task type:</strong>{{ task.task_type.name }}
-  </p>
+  <div>
   <br>
   <br>
-  <p>Task type: {{ task.task_type.name }}</p>
-  <h1>
-    worker
-     <p>Task description: {{ task.description }}</p>
-  <p>
-    {% if task.assignees.all %}
-      <ul>
-        {% for worker in task.assignees.all %}
-          <li>{{ worker.position }} ({{ worker.first_name }} {{ worker.last_name }})</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <br>
-    {% endif %}
-    {% if task in user.tasks.all %}
-      <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
-        Delete me from this task
-      </a>
-    {% else %}
-      <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
-        Assign me for this task
-      </a>
-    {% endif %}
+  <br>
+  <div class="container-dt-2">
+    <h2>
+      {{ task.name }}
+    </h2>
+  </div>
 
-  </h1>
-  <hr>
-  <ul>
-    {% for worker in task.workers.all %}
-      <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
-    {% endfor %}
-  </ul>
+  <div class="container-dt-3">
+    <table class="table table-bordered">
+      <td style="width: 200px"><strong>Task type:</strong></td>
+      <td>{{ task.task_type.name }}</td>
+      <tr></tr>
+      <td><strong>Task description:</strong></td>
+      <td>{{ task.description }}</td>
+      <tr></tr>
+      <td><strong>Assignee</strong></td>
+        {% if task.assignees.all %}
+            <td>
+              <ul>
+                {% for worker in task.assignees.all %}
+                    <li>{{ worker.position }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+                {% endfor %}
+              </ul>
+            </td>
+        {% else %}
+          <td></td>
+        {% endif %}
+    </table>
+    <br>
+    <div>
+      <div class="container-dt-1">
+        {% if task in user.tasks.all %}
+          <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+            Delete me from this task
+          </a>
+        {% else %}
+          <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
+            Assign me for this task
+          </a>
+      {% endif %}
+        <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page" style="float: right; margin: 10px">
+          Delete
+        </a>
+        <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page" style="float: right; margin: 10px">
+          Update
+        </a>
+      </div>
+    </div>
+
+  </div>
 {% endblock %}
