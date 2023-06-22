@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
-
-
 {% block content %}
     <h1>
       Task List
@@ -13,7 +11,6 @@
       {{ search_form|crispy }}
       <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
     </form>
-
     {% if task_list %}
     <table class="table table-striped">
       <tr>
@@ -36,11 +33,11 @@
         <td>{{ task.priority }}</td>
         <td>{{ task.task_type }}</td>
         <td>{{ task.assignees }}</td>
+        <td>
+          {% for worker in task.assignees.all %}
+            {{ worker.username }}
+          {% endfor %}
+        </td>
       </tr>
     {% endfor %}
-
-    </table>
-    {% else %}
-      <p>There are no tasks in the service.</p>
-    {% endif %}
 {% endblock %}

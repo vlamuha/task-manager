@@ -9,7 +9,9 @@
       </a>
     </h1>
     <form action="" method="GET" class="form-inline">
-      {{ search_form|crispy }}
+      <label>
+        <input type="search" class="form-control rounded" placeholder="Search by last name" name="last_name">
+      </label>
       <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
     </form>
 
