@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container" style="display: flex; align-items: center; margin-top: 200px; justify-content: center; height: 100px; flex-direction: column;">
+  <h1>Are you sure to delete this position?</h1>
+
+  <div class="container" style="display: flex; align-items: center; justify-content: center; height: 100px;">
+    <h3>{{ position }}</h3>
+  </div>
+
+  <div class="container">
+    <form action="" method="post" style="float: right; margin-right: 470px">
+      {% csrf_token %}
+
+      <br>
+
+      <input type="submit" value="Yes" class="btn btn-danger" style="margin-right: 10px">
+      <a class="btn btn-secondary" href="{% url "tasks:positions-list" %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
