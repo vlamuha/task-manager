@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div  class="text-white-75 mb-4" style="margin-top: 60px; background-color: #f4623a; color: white; height: 120px">
+    <h2 style="text-align: center; margin-left: 300px; margin-right: 300px">We hope this page helps you navigate our tasks more easily and find the information you need by task type</h2>
+  </div>
+<div>
+  <h1 style="text-align: center">
+    Task types
+  </h1>
+  <br>
+</div>
+<div style="margin-left: 20px; margin-right: 20px">
+  {% if tasktype_list %}
+    <table class="table table-striped" style="border: solid; border-color: #f4623a; width: 50%; margin: auto">
+      <tr>
+        <th style="text-align: center; width: 100px">ID</th>
+        <th style="text-align: center; width: 100px">Type</th>
+      </tr>
+      {% for tasktype in tasktype_list %}
+        <tr>
+          <td style="text-align: center">{{ tasktype.id }}</td>
+          <td style="text-align: center"><a href="{% url "tasks:task-type-detail" pk=tasktype.id %}">{{ tasktype.name }}</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</div>
+{% endblock %}
