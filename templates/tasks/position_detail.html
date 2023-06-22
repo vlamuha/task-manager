@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    <div  class="text-white-75 mb-4" style="margin-top: 60px; background-color: #f4623a; color: white; height: 160px">
+      <h2 style="text-align: center; margin-left: 300px; margin-right: 300px">Within this section, you can access a comprehensive list of all workers who have registered for and been allocated to this particular position</h2>
+    </div>
+    <h1 style="text-align: center">{{ object.name }}</h1>
+    <table class="table table-striped" style="border: solid; border-color: #f4623a; width: 50%; margin: auto">
+      <tr>
+      <th style="width: 200px">Username</th>
+      <th style="width: 200px">Full name</th>
+      </tr>
+      {% for worker in object.workers.all %}
+        <tr>
+        <td>{{ worker.username }}</td>
+        <td>{{ worker.first_name }}, {{ worker.last_name }}</td>
+      {% endfor %}
+      </tr>
+    </table>
+  </div>
+{% endblock %}
