@@ -74,7 +74,7 @@ class WorkerSearchForm(forms.Form):
     )
 
 
-class TaskCreationForm(forms.Form):
+class TaskSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
         required=False,
