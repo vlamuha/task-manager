@@ -1,15 +1,15 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 
-from tasks.models import Task, Worker
+from tasks.models import Task, Worker, Position
 
 
-class TaskCreationForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
-        queryset=Worker.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-floating"}),
-        label="Assignees",
+        queryset=Worker.objects.all(), widget=forms.CheckboxSelectMultiple
     )
 
     class Meta:
@@ -20,13 +20,16 @@ class TaskCreationForm(forms.ModelForm):
             "deadline",
             "priority",
             "task_type",
+            "is_completed",
             "assignees",
         ]
         widgets = {"deadline": forms.TextInput(attrs={"type": "datetime-local"})}
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["assignees"].label_from_instance = lambda obj: obj.username
+
+class PositionForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = ["name"]
 
 
 class WorkerCreationForm(UserCreationForm):
