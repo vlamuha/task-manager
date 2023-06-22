@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+  <br>
+  <br>
+  <br>
+  <div class="container-dt-2">
+    <h2>
+      {{ object.name }}
+    </h2>
+  </div>
+  <div class="container-dt-3">
+  {% for task in object.task_set.all %}
+    <table class="table table-bordered">
+      <td style="width: 200px"><strong>Task name:</strong></td>
+        <td>{{ task.name }}</td>
+      <tr></tr>
+      <td><strong>Task description:</strong></td>
+        <td>{{ task.description }}</td>
+      <tr></tr>
+          <hr style="color: #f4623a;">
+
+    </table>
+    {% endfor %}
+    <br>
+    <div>
+{% endblock %}
