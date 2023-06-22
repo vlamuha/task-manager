@@ -27,7 +27,7 @@ class WorkerCreationForm(UserCreationForm):
 
 
 class PositionSearchForm(forms.Form):
-    model = forms.CharField(
+    name = forms.CharField(
         max_length=255,
         required=False,
         label="",

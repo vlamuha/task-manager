@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "tasks",
 ]
 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -71,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "task_manager.wsgi.application"
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
