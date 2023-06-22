@@ -1,1 +1,44 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+
+{% block content %}
+    <h1>
+      Worker List
+      <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page" style="float: right; margin: 10px">
+        Create
+      </a>
+    </h1>
+    <form action="" method="GET" class="form-inline">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
+    </form>
+
+    {% if task_list %}
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Dead line date</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Type</th>
+        <th>Assignees</th>
+      </tr>
+    {% for task in task_list %}
+      <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.deadline_date }}</td>
+        <td>{{ task.is_completed }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.task_type }}</td>
+        <td>{{ task.assignees }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no tasks in the service.</p>
+    {% endif %}
+{% endblock %}
