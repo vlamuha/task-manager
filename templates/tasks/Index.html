@@ -1,20 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}
-  <title>Home Page</title>
-{% endblock %}
-{% block navbar %}
-  <header>
-      <h1>Welcome to my website</h1>
-      <nav>
-        <ul>
-          <li><a href="{% url "tasks:task-list" %}">Tasks</a></li>
-          <li><a href="#">Worker</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-{% endblock %}
 {% block content %}
-  <h1>Welcome to home page</h1>
+  <h1>IT Task Manager</h1>
+  <p>Welcome our team</p>
+  <br>
+  <p>The task manager has the following record counts:</p>
+  <ul>
+    <li><strong>Workers:</strong> {{ num_workers }}</li>
+    <li><strong>Tasks:</strong> {{ num_tasks }}</li>
+    <li><strong>Positions:</strong> {{ num_positions }}</li>
+  </ul>
 {% endblock %}

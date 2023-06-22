@@ -24,3 +24,14 @@ class WorkerCreationForm(UserCreationForm):
             "first_name",
             "last_name",
         )
+
+
+class PositionSearchForm(forms.Form):
+    model = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by position"}
+        )
+    )
