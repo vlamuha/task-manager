@@ -115,6 +115,13 @@ class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
 
 
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:task-types")
+
+
+
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
