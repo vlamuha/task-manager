@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>
-      Worker List
+      Task List
       <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page" style="float: right; margin: 10px">
         Create
       </a>
@@ -17,6 +17,7 @@
     {% if task_list %}
     <table class="table table-striped">
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Description</th>
         <th>Dead line date</th>
@@ -27,6 +28,7 @@
       </tr>
     {% for task in task_list %}
       <tr>
+        <td><a href="/task/{{ task.pk }}/">{{ task.id }}</a></td>
         <td>{{ task.name }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.deadline_date }}</td>
