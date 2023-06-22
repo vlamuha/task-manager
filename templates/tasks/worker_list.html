@@ -1,0 +1,39 @@
+ extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h1>
+      Worker List
+      <a href="{% url 'tasks:worker-create' %}" class="btn btn-primary link-to-page" style="float: right; margin: 10px">
+        Create
+      </a>
+    </h1>
+    <form action="" method="GET" class="form-inline">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
+    </form>
+
+    {% if worker_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Position</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+      </tr>
+    {% for worker in worker_list %}
+      <tr>
+        <td>{{ worker.id }}</td>
+        <td><a href="{{ worker.get_absolute_url }}">{{ worker.username }} {% if user == worker %} (Me){% endif %}</a></td>
+        <td>{{ worker.first_name }}</td>
+        <td>{{ worker.last_name }}</td>
+        <td>{{ worker.years_of_experience }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no workers in the service.</p>
+    {% endif %}
+{% endblock %}
