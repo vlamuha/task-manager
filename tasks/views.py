@@ -70,18 +70,17 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("tasks:task-list")
     template_name = "tasks/task_form.html"
 
-    def task_update(request, pk):
-        task = get_object_or_404(Task, pk=pk)
-
-        if request.method == "POST":
-            form = TaskForm(request.POST, instance=task)
-            if form.is_valid():
-                form.save()
-                return redirect("task_detail", pk=task.pk)
-        else:
-            form = TaskForm(instance=task)
-
+    def get(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        form = TaskForm(instance=task)
         return render(request, "tasks/task_form.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect("task_detail", pk=task.pk)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
