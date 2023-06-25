@@ -37,7 +37,7 @@ urlpatterns = [
         toggle_assign_to_task,
         name="toggle-task-assign",
     ),
-    path("worker_list/", WorkerListView.as_view(), name="worker-list"),
+    path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("worker/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("worker/create/", WorkerCreateView.as_view(), name="worker-create"),
     path("worker/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
