@@ -205,11 +205,15 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("tasks:task-types")
 
 
-@login_required
-def toggle_assign_to_task(request, pk):
-    worker = Worker.objects.get(id=request.user.id)
-    if Task.objects.get(id=pk) in worker.tasks.all():
-        worker.tasks.remove(pk)
-    else:
-        worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("tasks:task-detail", args=[pk]))
+class ToggleAssignToTaskView(generic.View):
+    @staticmethod
+    def post(request, pk):
+        worker = Worker.objects.get(id=request.user.id)
+        task = Task.objects.get(id=pk)
+        if task in worker.tasks.all():
+            worker.tasks.remove(task)
+        else:
+            worker.tasks.add(task)
+        return HttpResponseRedirect(
+            reverse_lazy("task_manager:task-detail", args=[pk])
+        )
