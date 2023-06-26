@@ -21,7 +21,7 @@ from tasks.views import (
     PositionCreateView,
     TaskTypeCreateView,
     WorkerDeleteView,
-    toggle_assign_to_task,
+    ToggleAssignToTaskView
 )
 
 
@@ -34,14 +34,14 @@ urlpatterns = [
     path("task/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     path(
         "task/<int:pk>/toggle-assign/",
-        toggle_assign_to_task,
+        ToggleAssignToTaskView,
         name="toggle-task-assign",
     ),
-    path("worker_list/", WorkerListView.as_view(), name="worker-list"),
-    path("worker/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
+    path("workers/", WorkerListView.as_view(), name="worker-list"),
+    path("workers/<int:pk>/", WorkerDetailView.as_view(), name="worker-detail"),
     path("worker/create/", WorkerCreateView.as_view(), name="worker-create"),
-    path("worker/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
-    path("worker/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
+    path("workers/<int:pk>/update/", WorkerUpdateView.as_view(), name="worker-update"),
+    path("workers/<int:pk>/delete/", WorkerDeleteView.as_view(), name="worker-delete"),
     path("positions/", PositionListView.as_view(), name="positions-list"),
     path("positions/<int:pk>/", PositionDetailView.as_view(), name="positions-detail"),
     path("positions/create/", PositionCreateView.as_view(), name="position-create"),

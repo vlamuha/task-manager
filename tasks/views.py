@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -71,18 +70,19 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("tasks:task-list")
     template_name = "tasks/task_form.html"
 
-    def task_update(request, pk):
-        task = get_object_or_404(Task, pk=pk)
-
-        if request.method == "POST":
-            form = TaskForm(request.POST, instance=task)
-            if form.is_valid():
-                form.save()
-                return redirect("task_detail", pk=task.pk)
-        else:
-            form = TaskForm(instance=task)
-
+    def get(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        form = TaskForm(instance=task)
         return render(request, "tasks/task_form.html", {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect("task_detail", pk=task.pk)
+        
+        return self.form_invalid(form)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -205,11 +205,15 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("tasks:task-types")
 
 
-@login_required
-def toggle_assign_to_task(request, pk):
-    worker = Worker.objects.get(id=request.user.id)
-    if Task.objects.get(id=pk) in worker.tasks.all():
-        worker.tasks.remove(pk)
-    else:
-        worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("tasks:task-detail", args=[pk]))
+class ToggleAssignToTaskView(generic.View):
+    @staticmethod
+    def post(request, pk):
+        worker = Worker.objects.get(id=request.user.id)
+        task = Task.objects.get(id=pk)
+        if task in worker.tasks.all():
+            worker.tasks.remove(task)
+        else:
+            worker.tasks.add(task)
+        return HttpResponseRedirect(
+            reverse_lazy("task_manager:task-detail", args=[pk])
+        )
