@@ -81,8 +81,8 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
         if form.is_valid():
             form.save()
             return redirect("task_detail", pk=task.pk)
-        else:
-            return self.form_invalid
+        
+        return self.form_invalid(form)
 
 
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
