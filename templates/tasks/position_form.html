@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div>
+    <h1 style="text-align: center; margin-top: 200px">{{ object|yesno:"Update,Create" }} position</h1>
+
+  <div class="form-container">
+    <form action="" method="post" novalidate class="my-form">
+    {% csrf_token %}
+    {{ form|crispy}}
+
+    <input type="submit" value="Submit" class="btn btn-primary" style="float: right; margin-top: 20px">
+
+  </div>
+  </div>
+
+  <style>
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-fields {
+      width: 15%;
+    }
+
+    .form-fields .form-group {
+      margin-bottom: 10px;
+    }
+
+    .button-container {
+      margin-top: 20px;
+    }
+  </style>
+{% endblock %}

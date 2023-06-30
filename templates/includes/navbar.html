@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+    <div class="container">
+      <a class="navbar-brand" href="/" rel="tooltip" data-placement="bottom">
+        TaskFlow Manager
+      </a>
+      <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover ms-auto">
+          <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-5">
+            <a href="{% url "tasks:task-list" %}" class="dropdown-item border-radius-md">
+                  <span>Tasks</span>
+                </a>
+          </li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover ms-auto">
+          <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-5">
+            <a href="{% url "tasks:worker-list" %}" class="dropdown-item border-radius-md">
+                  <span>Workers</span>
+                </a>
+          </li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover ms-auto">
+          <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-5">
+            <a href="{% url "tasks:positions-list" %}" class="dropdown-item border-radius-md">
+                  <span>Positions</span>
+                </a>
+          </li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover ms-auto">
+          <li class="nav-item dropdown dropdown-hover mx-2 ms-lg-5">
+            <a href="{% url "tasks:task-types" %}" class="dropdown-item border-radius-md">
+                  <span>Task types</span>
+                </a>
+          </li>
+        </ul>
+      </div>
+
+          {% if request.user.is_authenticated %}
+              <a class="nav-link nav-link-icon me-2"
+                href="{% url 'logout' %}">
+                <i class="fa fa-sign-out me-1"></i>
+                <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign OUT">Logout</p>
+              </a>
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>

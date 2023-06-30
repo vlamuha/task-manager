@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+  <body id="page-top">
+       <header class="masthead" style="padding-top: 10.5rem; padding-bottom: 6rem; text-align: center; color: #fff;
+        background-image: linear-gradient(to bottom, rgba(92, 77, 66, 0.5) 0%, rgba(92, 77, 66, 0.5) 100%), url('/static/img/1.jpg');
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">Welcome to TaskFlow Manager</h1>
+                        <hr class="divider">
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5">
+                          Introducing our web-based task management platform at our IT company! Experience the
+                          convenience of our user-friendly system designed to streamline your task management process.
+                          With a range of powerful features, including task assignment, deadline setting, and progress
+                          tracking, you can stay organized and enhance your team's efficiency. Embrace our task manager
+                          to keep your projects on track and achieve your goals effectively. Join us today and elevate
+                          your productivity to new heights!
+                        </p>
+                        <a class="btn btn-primary btn-xl" href="{% url "login" %}">Get started</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <hr class="divider divider-light">
+                        <p class="text-white-75 mb-4">TaskFlow Manager is designed to help you stay organized and productive as you surf through your IT projects. You can effortlessly create, assign, and manage tasks for you and your team. You can easily track progress, set deadlines, and check if tasks are completed, so you can stay on top of your project timeline.</p>
+                        <p class="text-white-75 mb-4">Our task manager also allows you to easily search and filter tasks by position, so you can quickly find what you need and get back to work. You can also view task details, including descriptions, comments,all in one place.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Service</h2>
+                <hr class="divider">
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">
+                              <a class="nav-link active" aria-current="page" href="{% url "tasks:task-list" %}">Tasks</a>
+                            </h3>
+                            <p class="text-muted mb-0">Efficient task management with user assignments.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">
+                              <a class="nav-link active" aria-current="page" href="{% url "tasks:worker-list" %}">Workers</a>
+                            </h3>
+                            <p class="text-muted mb-0">A comprehensive worker list for easy management and assignment tracking.</p>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">
+                              <a class="nav-link active" aria-current="page" href="{% url "tasks:positions-list" %}">Positions</a>
+                            </h3>
+                            <p class="text-muted mb-0">Seamless integration of position listings with task assignments.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">
+                              <a class="nav-link active" aria-current="page" href="{% url "tasks:task-types" %}">Task types</a>
+                            </h3>
+                            <p class="text-muted mb-0">Effortlessly manage tasks with clear task type categorization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright © 2023 - TaskFlow Manager</div></div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        </section>
+</body>
+{% endblock %}

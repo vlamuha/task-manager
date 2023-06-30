@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div>
+    <h1 style="text-align: center">{{ object|yesno:"Update,Create" }} Worker</h1>
+    <form action="" method="post" novalidate class="my-form">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+  </div>
+
+  <style>
+    .my-form {
+      width: 50%;
+      margin: 0 auto;
+    }
+  </style>
+{% endblock %}

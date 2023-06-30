@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div>
+    <h1 style="text-align: center">
+      Worker List
+    </h1>
+    <form action="" method="GET" class="form-inline" style="margin: 20px">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔎" class="btn btn-light" style="margin: 10px">
+    </form>
+    <div style="margin-left: 20px; margin-right: 20px">
+      {% if worker_list %}
+        <table class="table table-striped" style="padding: 20px; border: solid; border-color: #f4623a">
+          <tr>
+            <th style="text-align: center">ID</th>
+            <th>Position</th>
+            <th>Username</th>
+            <th>Full name</th>
+            {% if user.is_superuser %}
+              <th>Update</th>
+              <th>Delete</th>
+            {% endif %}
+          </tr>
+        {% for worker in worker_list %}
+          <tr>
+            <td style="text-align: center">{{ worker.id }}</td>
+            {% if worker.position %}
+              <td><a href="{% url "tasks:positions-detail" pk=worker.position.pk %}">{{ worker.position }} {% if user == worker %} (Me){% endif %}</a></td>
+            {% else %}
+              <td></td>
+            {% endif %}
+            <td>{{ worker.username }}</td>
+            <td>{{ worker.first_name }} {{ worker.last_name }}</td>
+            {% if user.is_superuser %}
+              <td><a href="{% url "tasks:worker-update" pk=worker.id %}" style="color: #1b1b1b">Update</a></td>
+              <td><a href="{% url "tasks:worker-delete" pk=worker.id %}" style="color: #1b1b1b">Delete</a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+
+        </table>
+        {% else %}
+          <p>There are no workers in the service.</p>
+        {% endif %}
+    </div>
+    <div>
+      <h1>
+        <a href="{% url 'tasks:worker-create' %}" class="btn btn-primary link-to-page" style="float: right; margin: 30px">
+          Create
+        </a>
+        </h1>
+    </div>
+  </div>
+{% endblock %}

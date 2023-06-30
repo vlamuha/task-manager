@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+  <br>
+  <br>
+  <br>
+  <div class="container-dt-2">
+    <h2>
+      {{ task.name }}
+    </h2>
+  </div>
+
+  <div class="container-dt-3">
+    <table class="table table-bordered">
+      <td style="width: 200px"><strong>Task type:</strong></td>
+      <td>{{ task.task_type.name }}</td>
+      <tr></tr>
+      <td><strong>Task description:</strong></td>
+      <td>{{ task.description }}</td>
+      <tr></tr>
+      <td><strong>Assignee</strong></td>
+        {% if task.assignees.all %}
+            <td>
+              <ul>
+                {% for worker in task.assignees.all %}
+                    <li>{{ worker.position }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+                {% endfor %}
+              </ul>
+            </td>
+        {% else %}
+          <td></td>
+        {% endif %}
+    </table>
+    <br>
+    <div>
+      <div class="container-dt-1">
+        {% if task in user.tasks.all %}
+          <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+            Delete me from this task
+          </a>
+        {% else %}
+          <a href="{% url 'tasks:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
+            Assign me for this task
+          </a>
+      {% endif %}
+        <a href="{% url 'tasks:task-delete' pk=task.id %}" class="btn btn-danger link-to-page" style="float: right; margin: 10px">
+          Delete
+        </a>
+        <a href="{% url 'tasks:task-update' pk=task.id %}" class="btn btn-secondary link-to-page" style="float: right; margin: 10px">
+          Update
+        </a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
